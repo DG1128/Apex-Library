@@ -1,0 +1,47 @@
+name: "✨ Feature Request"
+description: "Suggest a new idea, feature, or enhancement for Apex LMS."
+title: "[FEAT]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting an idea to make Apex LMS better!
+  - type: textarea
+    id: problem
+    attributes:
+      label: "Problem or Need"
+      description: "Is your feature request related to a problem? Please describe."
+      placeholder: "Librarians currently have to manually export overdue student lists..."
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: "Proposed Solution"
+      description: "Describe the solution or new workflow you'd like to see."
+      placeholder: "Add an automated daily SMS/Email webhook for overdue loans..."
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "Alternatives Considered"
+      description: "Any alternative solutions or features you've considered."
+      placeholder: "Using third party notification scripts..."
+    validations:
+      required: false
+  - type: dropdown
+    id: user_role
+    attributes:
+      label: "Target User Role"
+      description: "Who benefits most from this feature?"
+      options:
+        - "Student"
+        - "Faculty"
+        - "Librarian"
+        - "Administrator"
+        - "Event Guest / Organizer"
+        - "All Users"
+    validations:
+      required: true

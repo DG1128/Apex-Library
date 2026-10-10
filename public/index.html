@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-accent="violet">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Apex Library Management System | College Knowledge Hub</title>
+  <meta name="description" content="Next-generation, ultra-fast, offline-capable College Library Management System with FTS5 catalog search, bento UI, and rapid circulation.">
+  <meta name="theme-color" content="#6366f1">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Self-Contained Offline CSS Design System -->
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Desktop Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <div class="brand-logo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/></svg>
+        </div>
+        <div class="brand-info">
+          <h2>Apex Library</h2>
+          <p>College Knowledge Hub</p>
+        </div>
+      </div>
+
+      <!-- Reactive Nav Links -->
+      <nav class="sidebar-nav" id="sidebar-nav-container"></nav>
+
+      <!-- Sidebar Footer Preferences -->
+      <div class="sidebar-footer">
+        <button class="btn btn-ghost btn-icon" title="Toggle Light/Dark Theme" onclick="toggleTheme()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+        <button class="btn btn-ghost btn-icon" title="Universal Command Palette" onclick="window.cmdPalette.open()">
+          <span class="kbd-shortcut" style="font-size:0.75rem;">⌘K</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      <!-- Sticky Topbar -->
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <div class="cmd-k-trigger" onclick="window.cmdPalette.open()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <span>Jump to book or action...</span>
+            <span class="kbd-shortcut">Ctrl K</span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <!-- Theme Toggle -->
+          <button class="btn btn-ghost btn-icon" title="Toggle Theme" onclick="toggleTheme()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          </button>
+
+          <!-- User Profile or Login CTA -->
+          <div id="topbar-user-area"></div>
+        </div>
+      </header>
+
+      <!-- Dynamic Active View Container -->
+      <div class="app-content" id="main-view-container"></div>
+    </main>
+  </div>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <nav class="mobile-nav" id="mobile-bottom-nav"></nav>
+
+  <!-- Global Modal System -->
+  <div class="modal-backdrop" id="global-modal-backdrop">
+    <div class="modal-content" id="global-modal-content"></div>
+  </div>
+
+  <!-- Global Slide-Over Drawer System -->
+  <div class="drawer-backdrop" id="global-drawer-backdrop" onclick="window.closeDrawer()"></div>
+  <div class="drawer" id="global-drawer"></div>
+
+  <!-- Global Floating Toast Notification Container -->
+  <div class="toast-container" id="global-toast-container"></div>
+
+  <!-- Offline Self-Contained JavaScript Modules -->
+  <script src="/js/icons.js"></script>
+  <script src="/js/covers.js"></script>
+  <script src="/js/confetti.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/charts.js"></script>
+  <script src="/js/commandPalette.js"></script>
+
+  <!-- View Controllers -->
+  <script src="/js/views/studentHome.js"></script>
+  <script src="/js/views/myShelf.js"></script>
+  <script src="/js/views/circulation.js"></script>
+  <script src="/js/views/booksAdmin.js"></script>
+  <script src="/js/views/membersAdmin.js"></script>
+  <script src="/js/views/reservations.js"></script>
+  <script src="/js/views/finesAdmin.js"></script>
+  <script src="/js/views/suggestions.js"></script>
+  <script src="/js/views/reportsAdmin.js"></script>
+  <script src="/js/views/leaderboard.js"></script>
+  <script src="/js/views/settingsAdmin.js"></script>
+  <script src="/js/views/kiosk.js"></script>
+
+  <!-- Master App Router & State -->
+  <script src="/js/app.js"></script>
+</body>
+</html>

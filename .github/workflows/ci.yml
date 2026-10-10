@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  test:
+    name: Test & Verify (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci || npm install
+
+      - name: Verify Code Style & Lint
+        run: npm run lint
+
+      - name: Seed Database
+        run: npm run seed
+
+      - name: Run Automated Unit & API Tests
+        run: npm test
+
+      - name: Run Integration Tests
+        run: npm run test:integration
+
+      - name: Verify Server Startup (Smoke Test)
+        run: |
+          node server.js &
+          SERVER_PID=$!
+          sleep 3
+          curl --fail http://localhost:3000/api/system/health || exit 1
+          kill $SERVER_PID

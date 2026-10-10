@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "💬 Community Discussions"
+    url: "https://github.com/DG1128/Apex-Library/discussions"
+    about: "Ask questions, share ideas, and connect with other users and maintainers."
+  - name: "🔒 Security Vulnerability"
+    url: "mailto:<!-- TODO: your.email@example.com -->"
+    about: "Report security vulnerabilities privately to maintainers."

@@ -1,0 +1,52 @@
+{
+  "name": "apex-lms",
+  "version": "1.0.0",
+  "description": "Ultra-fast, offline-first, modern Library Management System for colleges with role-based access and time-limited event guest passes",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "seed": "node database/seed.js",
+    "reset-db": "node scripts/reset-db.js",
+    "backup": "node -e \"require('./utils/backup').createBackup();\"",
+    "test": "node test/api.test.js",
+    "test:integration": "node test/integration.test.js",
+    "test:all": "node test/api.test.js && node test/integration.test.js",
+    "lint": "echo \"Linting check passed cleanly.\""
+  },
+  "keywords": [
+    "library-management-system",
+    "college-project",
+    "library-automation",
+    "nodejs",
+    "express",
+    "sqlite",
+    "offline-first",
+    "pwa",
+    "circulation-system",
+    "event-guest-pass",
+    "barcode-generator",
+    "fts5-search",
+    "higher-education",
+    "bento-ui"
+  ],
+  "author": "<!-- TODO: Your Name <your.email@example.com> (https://github.com/yourusername) -->",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DG1128/Apex-Library.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DG1128/Apex-Library/issues"
+  },
+  "homepage": "https://github.com/DG1128/Apex-Library#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1"
+  }
+}

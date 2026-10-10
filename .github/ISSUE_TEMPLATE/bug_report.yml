@@ -1,0 +1,67 @@
+name: "🐛 Bug Report"
+description: "Report a reproducible bug or unexpected behavior in Apex LMS."
+title: "[BUG]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! Please check existing issues first.
+  - type: textarea
+    id: description
+    attributes:
+      label: "Bug Description"
+      description: "A clear and concise description of what the bug is."
+      placeholder: "When scanning barcode ACC-1002, the return modal throws..."
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: "Steps to Reproduce"
+      description: "Step-by-step instructions to reproduce the issue."
+      placeholder: |
+        1. Log in as Librarian ('LIB001')
+        2. Navigate to Circulation Desk
+        3. Enter member code STU2024001
+        4. See error...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: "Expected Behavior"
+      description: "What did you expect to happen?"
+      placeholder: "The book copy should be marked as returned and fine calculated."
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: "Operating System"
+      description: "What OS are you running the server on?"
+      options:
+        - "Windows 10 / 11"
+        - "Windows Server"
+        - "Ubuntu / Debian Linux"
+        - "macOS"
+        - "Docker / Container"
+        - "Other"
+    validations:
+      required: true
+  - type: input
+    id: node_version
+    attributes:
+      label: "Node.js Version"
+      description: "Output of `node -v`"
+      placeholder: "v20.11.0"
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: "Server Logs or Screenshots"
+      description: "Paste relevant terminal logs or drag and drop screenshots here."
+      placeholder: "Paste console output here..."
+    validations:
+      required: false
