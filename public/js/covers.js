@@ -124,10 +124,51 @@ function generateBookCoverSVG(title, author, category = '', width = 300, height 
         </text>
       </g>
 
-      <!-- Bottom Author & College Emblem -->
-      <g transform="translate(24, ${height - 24})">
-        <text x="0" y="0" fill="rgba(255,255,255,0.85)" font-family="system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="0.5">${shortAuthor}</text>
-      </g>
-    </svg>
-  `.trim();
+// Map of known book titles to real downloaded high-res photos
+const BOOK_IMAGE_MAP = {
+  'clean code': '/images/books/clean-code.jpg',
+  'pragmatic programmer': '/images/books/pragmatic-programmer.jpg',
+  'algorithms': '/images/books/algorithms-clrs.jpg',
+  'design patterns': '/images/books/design-patterns.jpg',
+  'clean architecture': '/images/books/clean-architecture.jpg',
+  'data-intensive': '/images/books/ddia.jpg',
+  'python': '/images/books/python-crash-course.jpg',
+  'javascript': '/images/books/eloquent-javascript.jpg',
+  'deep learning': '/images/books/deep-learning-goodfellow.jpg',
+  'machine learning': '/images/books/hands-on-ml.jpg',
+  'atomic habits': '/images/books/atomic-habits.jpg',
+  'deep work': '/images/books/deep-work.jpg',
+  'thinking, fast and slow': '/images/books/thinking-fast-slow.jpg',
+  'lean startup': '/images/books/lean-startup.jpg',
+  'digital design': '/images/books/digital-design.jpg',
+  'signals and systems': '/images/books/signals-systems.jpg',
+  'thermodynamics': '/images/books/thermodynamics.jpg',
+  'fluid mechanics': '/images/books/fluid-mechanics.jpg',
+  'cosmos': '/images/books/cosmos-sagan.jpg',
+  'brief history of time': '/images/books/brief-history-time.jpg'
+};
+
+// Render either real photography cover or procedural SVG
+function getBookCoverHTML(title, author, category = '', width = 300, height = 400) {
+  const lower = (title || '').toLowerCase();
+  for (const [key, imgPath] of Object.entries(BOOK_IMAGE_MAP)) {
+    if (lower.includes(key)) {
+      return `
+        <div class="book-cover-photo-wrap" style="position:relative; width:100%; height:100%; border-radius:12px; overflow:hidden; background:#1e293b;">
+          <img src="${imgPath}" alt="${title} cover" style="width:100%; height:100%; object-fit:cover; display:block;" loading="lazy" />
+          <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.75) 100%); pointer-events:none;"></div>
+          <div style="position:absolute; bottom:12px; left:12px; right:12px; color:#ffffff; text-shadow:0 2px 6px rgba(0,0,0,0.9); pointer-events:none;">
+            <div style="font-size:0.85rem; font-weight:800; line-height:1.2;">${title}</div>
+            <div style="font-size:0.75rem; opacity:0.85; margin-top:2px;">${author}</div>
+          </div>
+        </div>
+      `;
+    }
+  }
+  return generateBookCoverSVG(title, author, category, width, height);
 }
+
+// Global Exports
+window.generateBookCoverSVG = generateBookCoverSVG;
+window.getBookCoverHTML = getBookCoverHTML;
+

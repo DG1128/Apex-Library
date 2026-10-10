@@ -111,12 +111,33 @@ async function loadMembersAdminTable() {
       return;
     }
 
-    tbody.innerHTML = data.members.map(m => `
+    tbody.innerHTML = data.members.map(m => {
+      const avatarMap = {
+        'ADMIN001': '/images/avatars/admin.jpg',
+        'LIB001': '/images/avatars/librarian.jpg',
+        'FAC001': '/images/avatars/faculty-ada.jpg',
+        'FAC-CS-101': '/images/avatars/faculty-turing.jpg',
+        'STU2024001': '/images/avatars/student-aarav.jpg',
+        'STU2024002': '/images/avatars/student-diya.jpg',
+        'STU2024003': '/images/avatars/student-rohan.jpg',
+        'STU2024004': '/images/avatars/student-ananya.jpg'
+      };
+
+      const avatarHtml = avatarMap[m.member_id]
+        ? `<img src="${avatarMap[m.member_id]}" alt="${m.name}" style="width:36px; height:36px; border-radius:50%; object-fit:cover; border:2px solid var(--border-strong);" loading="lazy" />`
+        : `<div style="width:36px; height:36px; border-radius:50%; background:var(--accent-gradient); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.8rem;">${(m.name || 'U').substring(0, 2).toUpperCase()}</div>`;
+
+      return `
       <tr>
         <td><code>${m.member_id}</code></td>
         <td>
-          <div style="font-weight:700; color:var(--text-primary);">${m.name}</div>
-          <div style="font-size:0.75rem; color:var(--text-muted);">${m.email || m.phone || 'No contact on file'}</div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            ${avatarHtml}
+            <div>
+              <div style="font-weight:700; color:var(--text-primary);">${m.name}</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">${m.email || m.phone || 'No contact on file'}</div>
+            </div>
+          </div>
         </td>
         <td>
           <span class="badge ${m.role === 'faculty' ? 'badge-info' : (m.role === 'student' ? 'badge-neutral' : 'badge-warning')}" style="text-transform:capitalize;">

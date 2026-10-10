@@ -148,7 +148,7 @@ async function loadMyShelfData() {
           return `
             <div class="loan-card state-${loan.state}">
               <div class="loan-cover-mini">
-                ${generateBookCoverSVG(loan.title, loan.author, loan.category, 120, 168)}
+                ${getBookCoverHTML(loan.title, loan.author, loan.category, 120, 168)}
               </div>
               <div class="loan-details">
                 <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:4px;">

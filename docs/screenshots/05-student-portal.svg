@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" style="background:#090d16; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#090d16" />
+      <stop offset="100%" stop-color="#050811" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="40" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1280" height="720" fill="url(#bgGrad)" />
+  
+  <!-- Subtle Ambient Glow -->
+  <circle cx="200" cy="150" r="180" fill="#f59e0b" opacity="0.12" filter="url(#glow)" />
+  <circle cx="1080" cy="550" r="220" fill="#8b5cf6" opacity="0.1" filter="url(#glow)" />
+
+  <!-- Top App Window Bar -->
+  <rect x="40" y="30" width="1200" height="660" rx="16" fill="#111827" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+  
+  <!-- Window Header -->
+  <rect x="40" y="30" width="1200" height="54" rx="16" fill="#1e293b" />
+  <circle cx="68" cy="57" r="6" fill="#ef4444" />
+  <circle cx="88" cy="57" r="6" fill="#f59e0b" />
+  <circle cx="108" cy="57" r="6" fill="#10b981" />
+
+  <!-- Window Title -->
+  <text x="640" y="63" fill="#94a3b8" font-size="14" font-weight="600" text-anchor="middle">Apex LMS • Student Self-Service Portal & Reading Streaks</text>
+  
+  <!-- Badge -->
+  <rect x="1100" y="44" width="110" height="26" rx="13" fill="#f59e0b" opacity="0.2" />
+  <text x="1155" y="61" fill="#f59e0b" font-size="11" font-weight="700" text-anchor="middle">STUDENT PORTAL</text>
+
+  <!-- Content Section -->
+  <g transform="translate(60, 100)">
+    <!-- Header info -->
+    <text x="20" y="35" fill="#f8fafc" font-size="24" font-weight="800">Student Self-Service Portal & Reading Streaks</text>
+    <text x="20" y="60" fill="#94a3b8" font-size="14">Active loan countdowns, 1-click renewals, hold queuing, and gamification badges</text>
+    
+    
+      <!-- Streak Banner -->
+      <g transform="translate(20, 80)">
+        <rect x="0" y="0" width="1120" height="90" rx="12" fill="#78350f" stroke="#f59e0b" />
+        <text x="30" y="42" fill="#fef3c7" font-size="22" font-weight="800">🔥 12-Week Reading Streak!</text>
+        <text x="30" y="68" fill="#fde68a" font-size="13">You are in the top 5% of student scholars this semester. Keep reading!</text>
+      </g>
+
+      <!-- Active Loans -->
+      <g transform="translate(20, 195)">
+        <text x="0" y="25" fill="#f8fafc" font-size="18" font-weight="700">My Active Borrowed Books</text>
+        
+        <rect x="0" y="45" width="540" height="180" rx="12" fill="#1e293b" />
+        <text x="20" y="80" fill="#f8fafc" font-size="16" font-weight="700">Clean Code (ACC-1001-C2)</text>
+        <text x="20" y="105" fill="#94a3b8" font-size="12">Issued: Oct 01, 2024 • Due: Oct 15, 2024</text>
+        <text x="20" y="135" fill="#10b981" font-size="13" font-weight="700">⏳ 5 Days Remaining</text>
+        
+        <rect x="360" y="115" width="150" height="36" rx="8" fill="#6366f1" />
+        <text x="435" y="138" fill="#f8fafc" font-size="12" font-weight="700" text-anchor="middle">Renew (+14 Days)</text>
+      </g>
+    
+  </g>
+</svg>

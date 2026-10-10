@@ -123,11 +123,24 @@ function updateShellUI() {
   const userArea = document.getElementById('topbar-user-area');
   if (userArea) {
     if (user) {
+      const avatarMap = {
+        'ADMIN001': '/images/avatars/admin.jpg',
+        'LIB001': '/images/avatars/librarian.jpg',
+        'FAC001': '/images/avatars/faculty-ada.jpg',
+        'FAC-CS-101': '/images/avatars/faculty-turing.jpg',
+        'STU2024001': '/images/avatars/student-aarav.jpg',
+        'STU2024002': '/images/avatars/student-diya.jpg',
+        'STU2024003': '/images/avatars/student-rohan.jpg',
+        'STU2024004': '/images/avatars/student-ananya.jpg'
+      };
+
+      const avatarEl = avatarMap[user.member_id]
+        ? `<img src="${avatarMap[user.member_id]}" alt="${user.name}" style="width:34px; height:34px; border-radius:50%; object-fit:cover; border:2px solid var(--border-strong);" loading="lazy" />`
+        : `<div style="width:34px; height:34px; border-radius:var(--radius-pill); background:var(--accent-subtle); color:var(--accent-primary); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.9rem;">${user.name.charAt(0)}</div>`;
+
       userArea.innerHTML = `
         <div style="display:flex; align-items:center; gap:10px;">
-          <div style="width:34px; height:34px; border-radius:var(--radius-pill); background:var(--accent-subtle); color:var(--accent-primary); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.9rem;">
-            ${user.name.charAt(0)}
-          </div>
+          ${avatarEl}
           <div style="text-align:left; line-height:1.2;" class="no-mobile">
             <div style="font-size:0.85rem; font-weight:700;">${user.name}</div>
             <div style="font-size:0.7rem; color:var(--text-muted); text-transform:capitalize;">${user.role} (${user.member_id})</div>

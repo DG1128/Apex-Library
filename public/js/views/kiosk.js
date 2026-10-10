@@ -155,7 +155,7 @@ async function loadKioskBooks(query = '', category = '') {
               ${b.available_copies > 0 ? `🟢 ${b.available_copies} In Library` : '🔴 All Issued'}
             </span>
           </div>
-          ${generateBookCoverSVG(b.title, b.author, b.category, 300, 400)}
+          ${getBookCoverHTML(b.title, b.author, b.category, 300, 400)}
         </div>
         <div class="book-card-content">
           <div>

@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" style="background:#090d16; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#090d16" />
+      <stop offset="100%" stop-color="#050811" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="40" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1280" height="720" fill="url(#bgGrad)" />
+  
+  <!-- Subtle Ambient Glow -->
+  <circle cx="200" cy="150" r="180" fill="#3b82f6" opacity="0.12" filter="url(#glow)" />
+  <circle cx="1080" cy="550" r="220" fill="#8b5cf6" opacity="0.1" filter="url(#glow)" />
+
+  <!-- Top App Window Bar -->
+  <rect x="40" y="30" width="1200" height="660" rx="16" fill="#111827" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+  
+  <!-- Window Header -->
+  <rect x="40" y="30" width="1200" height="54" rx="16" fill="#1e293b" />
+  <circle cx="68" cy="57" r="6" fill="#ef4444" />
+  <circle cx="88" cy="57" r="6" fill="#f59e0b" />
+  <circle cx="108" cy="57" r="6" fill="#10b981" />
+
+  <!-- Window Title -->
+  <text x="640" y="63" fill="#94a3b8" font-size="14" font-weight="600" text-anchor="middle">Apex LMS • Scan-First Circulation Desk Terminal</text>
+  
+  <!-- Badge -->
+  <rect x="1100" y="44" width="110" height="26" rx="13" fill="#3b82f6" opacity="0.2" />
+  <text x="1155" y="61" fill="#3b82f6" font-size="11" font-weight="700" text-anchor="middle">CIRCULATION DESK</text>
+
+  <!-- Content Section -->
+  <g transform="translate(60, 100)">
+    <!-- Header info -->
+    <text x="20" y="35" fill="#f8fafc" font-size="24" font-weight="800">Scan-First Circulation Desk Terminal</text>
+    <text x="20" y="60" fill="#94a3b8" font-size="14">Unified USB scanner input for instant borrower lookup, copy checkout, returns, and fine settlement</text>
+    
+    
+      <!-- Scan Input Box -->
+      <g transform="translate(20, 80)">
+        <rect x="0" y="0" width="1120" height="64" rx="16" fill="#1e293b" stroke="#3b82f6" stroke-width="3" />
+        <text x="30" y="40" fill="#f8fafc" font-size="18" font-weight="600">⚡ Scan or Enter Member ID / Barcode: STU2024001</text>
+      </g>
+
+      <!-- Member Details Left & Active Loans Right -->
+      <g transform="translate(20, 170)">
+        <!-- Left: Member Card -->
+        <rect x="0" y="0" width="540" height="350" rx="12" fill="#1e293b" stroke="rgba(255,255,255,0.08)" />
+        <text x="30" y="40" fill="#f8fafc" font-size="20" font-weight="800">Aarav Sharma (STU2024001)</text>
+        <text x="30" y="65" fill="#94a3b8" font-size="13">Department: Computer Science • Semester 4</text>
+        <text x="30" y="100" fill="#10b981" font-size="14" font-weight="700">Status: Active Member • Max Allowed: 4 Books</text>
+        <text x="30" y="130" fill="#6366f1" font-size="14">🔥 Reading Streak: 12 Weeks (Champion Reader)</text>
+        
+        <rect x="30" y="160" width="480" height="80" rx="8" fill="#0f172a" />
+        <text x="50" y="195" fill="#f8fafc" font-size="13" font-weight="700">Quick Issue Action:</text>
+        <text x="50" y="220" fill="#94a3b8" font-size="12">Scan book barcode to issue under 14-day policy</text>
+      </g>
+
+      <g transform="translate(580, 170)">
+        <!-- Right: Current Active Loans -->
+        <rect x="0" y="0" width="560" height="350" rx="12" fill="#1e293b" stroke="rgba(255,255,255,0.08)" />
+        <text x="30" y="40" fill="#f8fafc" font-size="18" font-weight="700">Currently Borrowed Items (2 Loans)</text>
+
+        <!-- Loan Item 1 -->
+        <rect x="30" y="65" width="500" height="70" rx="8" fill="#0f172a" />
+        <text x="50" y="95" fill="#f8fafc" font-size="14" font-weight="700">Clean Architecture (ACC-1005-C1)</text>
+        <text x="50" y="118" fill="#10b981" font-size="12">Due in 8 Days • Renewal Count: 0/2</text>
+
+        <!-- Loan Item 2 -->
+        <rect x="30" y="150" width="500" height="70" rx="8" fill="#0f172a" />
+        <text x="50" y="180" fill="#f8fafc" font-size="14" font-weight="700">Python Crash Course (ACC-1008-C2)</text>
+        <text x="50" y="203" fill="#10b981" font-size="12">Due in 12 Days • Renewal Count: 0/2</text>
+      </g>
+    
+  </g>
+</svg>

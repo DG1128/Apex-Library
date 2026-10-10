@@ -133,7 +133,7 @@ function initAsYouTypeSearch() {
         if (data.success && data.books && data.books.length > 0) {
           panel.innerHTML = data.books.map(b => `
             <div class="instant-result-item" onclick="openBookDrawer(${b.id})">
-              <div class="instant-thumb">${generateBookCoverSVG(b.title, b.author, b.category, 60, 80)}</div>
+              <div class="instant-thumb">${getBookCoverHTML(b.title, b.author, b.category, 60, 80)}</div>
               <div class="instant-info">
                 <div class="instant-title">${b.title}</div>
                 <div class="instant-author">by ${b.author}</div>
@@ -258,7 +258,7 @@ async function loadCatalogBooks() {
         <div class="book-card" onclick="openBookDrawer(${b.id})">
           <div class="book-cover-wrap">
             <div class="book-card-badge">${availabilityBadge}</div>
-            ${generateBookCoverSVG(b.title, b.author, b.category, 300, 400)}
+            ${getBookCoverHTML(b.title, b.author, b.category, 300, 400)}
           </div>
           <div class="book-card-content">
             <div>
@@ -339,7 +339,7 @@ async function openBookDrawer(bookId) {
       <div class="drawer-body">
         <div style="display:flex; gap:20px; margin-bottom:20px;">
           <div style="width:130px; height:180px; flex-shrink:0;">
-            ${generateBookCoverSVG(b.title, b.author, b.category, 260, 360)}
+            ${getBookCoverHTML(b.title, b.author, b.category, 260, 360)}
           </div>
           <div style="flex:1;">
             <h2 style="font-size:1.3rem; margin-bottom:6px;">${b.title}</h2>
