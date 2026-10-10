@@ -73,28 +73,71 @@ function sleep(ms) {
   return new Promise(res => setTimeout(res, ms));
 }
 
-// 1. Curated Book Cover Photo Registry
+// 1. Curated Book Cover Photo Registry (All 48 Catalog Titles)
 const BOOK_COVERS = [
+  // Computer Science
   { file: 'clean-code.jpg', url: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80', title: 'Clean Code', photographer: 'Fotis Fotopoulos', photographer_url: 'https://unsplash.com/@ffstop' },
-  { file: 'pragmatic-programmer.jpg', url: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&auto=format&fit=crop&q=80', title: 'The Pragmatic Programmer', photographer: 'Clément Hélardot', photographer_url: 'https://unsplash.com/@clemhlrdt' },
-  { file: 'algorithms-clrs.jpg', url: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=600&auto=format&fit=crop&q=80', title: 'Introduction to Algorithms', photographer: 'Roman Mager', photographer_url: 'https://unsplash.com/@roman_lazygeek' },
-  { file: 'design-patterns.jpg', url: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80', title: 'Design Patterns (GoF)', photographer: 'Aaron Burden', photographer_url: 'https://unsplash.com/@aaronburden' },
-  { file: 'clean-architecture.jpg', url: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=600&auto=format&fit=crop&q=80', title: 'Clean Architecture', photographer: 'Luca Bravo', photographer_url: 'https://unsplash.com/@lucabravo' },
+  { file: 'algorithms-clrs.jpg', url: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=600&auto=format&fit=crop&q=80', title: 'Introduction to Algorithms (CLRS)', photographer: 'Roman Mager', photographer_url: 'https://unsplash.com/@roman_lazygeek' },
   { file: 'ddia.jpg', url: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&auto=format&fit=crop&q=80', title: 'Designing Data-Intensive Applications', photographer: 'Taylor Vick', photographer_url: 'https://unsplash.com/@tvick' },
+  { file: 'c-programming.jpg', url: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=600&auto=format&fit=crop&q=80', title: 'The C Programming Language', photographer: 'Chris Ried', photographer_url: 'https://unsplash.com/@cdr6909' },
+  { file: 'pragmatic-programmer.jpg', url: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&auto=format&fit=crop&q=80', title: 'The Pragmatic Programmer', photographer: 'Clément Hélardot', photographer_url: 'https://unsplash.com/@clemhlrdt' },
+  { file: 'operating-systems.jpg', url: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80', title: 'Operating System Concepts', photographer: 'Markus Spiske', photographer_url: 'https://unsplash.com/@markusspiske' },
+  { file: 'database-systems.jpg', url: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=600&auto=format&fit=crop&q=80', title: 'Database System Concepts', photographer: 'Jan Antonin Kolar', photographer_url: 'https://unsplash.com/@jankolar' },
+  { file: 'computer-networks.jpg', url: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&auto=format&fit=crop&q=80', title: 'Computer Networks', photographer: 'Thomas Jensen', photographer_url: 'https://unsplash.com/@floptip' },
+  { file: 'domain-driven-design.jpg', url: 'https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?w=600&auto=format&fit=crop&q=80', title: 'Domain-Driven Design', photographer: 'Mohammad Rahmani', photographer_url: 'https://unsplash.com/@afgprogrammer' },
+  { file: 'sicp.jpg', url: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80', title: 'Structure and Interpretation of Computer Programs', photographer: 'Aaron Burden', photographer_url: 'https://unsplash.com/@aaronburden' },
+  { file: 'cracking-coding-interview.jpg', url: 'https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=600&auto=format&fit=crop&q=80', title: 'Cracking the Coding Interview', photographer: 'Florian Olivo', photographer_url: 'https://unsplash.com/@florianolv' },
+  { file: 'building-microservices.jpg', url: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80', title: 'Building Microservices', photographer: 'NASA', photographer_url: 'https://unsplash.com/@nasa' },
   { file: 'python-crash-course.jpg', url: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80', title: 'Python Crash Course', photographer: 'Markus Spiske', photographer_url: 'https://unsplash.com/@markusspiske' },
-  { file: 'eloquent-javascript.jpg', url: 'https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=600&auto=format&fit=crop&q=80', title: 'Eloquent JavaScript', photographer: 'Lautaro Andreani', photographer_url: 'https://unsplash.com/@flacovillalba' },
+  { file: 'clean-architecture.jpg', url: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=600&auto=format&fit=crop&q=80', title: 'Clean Architecture', photographer: 'Luca Bravo', photographer_url: 'https://unsplash.com/@lucabravo' },
+
+  // AI & Data Science
+  { file: 'ai-modern-approach.jpg', url: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&auto=format&fit=crop&q=80', title: 'Artificial Intelligence: A Modern Approach', photographer: 'Steve Johnson', photographer_url: 'https://unsplash.com/@steve_j' },
   { file: 'deep-learning-goodfellow.jpg', url: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&auto=format&fit=crop&q=80', title: 'Deep Learning', photographer: 'Tara Winstead', photographer_url: 'https://unsplash.com/@tarawinstead' },
   { file: 'hands-on-ml.jpg', url: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=80', title: 'Hands-On Machine Learning', photographer: 'John Schnobrich', photographer_url: 'https://unsplash.com/@johnschno' },
+  { file: 'pattern-recognition.jpg', url: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=600&auto=format&fit=crop&q=80', title: 'Pattern Recognition and Machine Learning', photographer: 'Roman Mager', photographer_url: 'https://unsplash.com/@roman_lazygeek' },
+  { file: 'python-data-analysis.jpg', url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80', title: 'Python for Data Analysis', photographer: 'Luke Chesser', photographer_url: 'https://unsplash.com/@lukechesser' },
+  { file: 'designing-ml-systems.jpg', url: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=80', title: 'Designing Machine Learning Systems', photographer: 'Austin Distel', photographer_url: 'https://unsplash.com/@austindistel' },
+
+  // Electronics & Hardware
+  { file: 'digital-design.jpg', url: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=80', title: 'Digital Design', photographer: 'Alexandre Debiève', photographer_url: 'https://unsplash.com/@alexandre_debieve' },
+  { file: 'microelectronic-circuits.jpg', url: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=80', title: 'Microelectronic Circuits', photographer: 'Fredy Jacob', photographer_url: 'https://unsplash.com/@fredyjacob' },
+  { file: 'signals-systems.jpg', url: 'https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?w=600&auto=format&fit=crop&q=80', title: 'Signals and Systems', photographer: 'Roman Mager', photographer_url: 'https://unsplash.com/@roman_lazygeek' },
+  { file: 'electronic-devices.jpg', url: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=80', title: 'Electronic Devices and Circuit Theory', photographer: 'Alexandre Debiève', photographer_url: 'https://unsplash.com/@alexandre_debieve' },
+  { file: 'fpga-prototyping.jpg', url: 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=600&auto=format&fit=crop&q=80', title: 'FPGA Prototyping by Verilog Examples', photographer: 'Vishnu Mohanan', photographer_url: 'https://unsplash.com/@vishnumohanan' },
+
+  // Mechanical & Civil
+  { file: 'thermodynamics.jpg', url: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=80', title: 'Engineering Thermodynamics', photographer: 'Science in HD', photographer_url: 'https://unsplash.com/@scienceinhd' },
+  { file: 'theory-of-machines.jpg', url: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&auto=format&fit=crop&q=80', title: 'Theory of Machines', photographer: 'Science in HD', photographer_url: 'https://unsplash.com/@scienceinhd' },
+  { file: 'fluid-mechanics.jpg', url: 'https://images.unsplash.com/photo-1507668077129-56e32842fceb?w=600&auto=format&fit=crop&q=80', title: 'Fluid Mechanics', photographer: 'Lucas Gallone', photographer_url: 'https://unsplash.com/@lucasgallone' },
+  { file: 'strength-of-materials.jpg', url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&auto=format&fit=crop&q=80', title: 'Strength of Materials', photographer: 'Scott Blake', photographer_url: 'https://unsplash.com/@scottblake' },
+  { file: 'steel-structures.jpg', url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80', title: 'Design of Steel Structures', photographer: 'Guillaume Meurice', photographer_url: 'https://unsplash.com/@gmeurice' },
+
+  // Mathematics & Physics
+  { file: 'advanced-eng-math.jpg', url: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&auto=format&fit=crop&q=80', title: 'Advanced Engineering Mathematics', photographer: 'Dan Cristian Pădureț', photographer_url: 'https://unsplash.com/@dancristianpaduret' },
+  { file: 'higher-eng-math.jpg', url: 'https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=600&auto=format&fit=crop&q=80', title: 'Higher Engineering Mathematics', photographer: 'Jeswin Thomas', photographer_url: 'https://unsplash.com/@jeswino' },
+  { file: 'linear-algebra.jpg', url: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=600&auto=format&fit=crop&q=80', title: 'Linear Algebra and Its Applications', photographer: 'Roman Mager', photographer_url: 'https://unsplash.com/@roman_lazygeek' },
+  { file: 'discrete-math.jpg', url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80', title: 'Discrete Mathematics and Its Applications', photographer: 'Milad Fakurian', photographer_url: 'https://unsplash.com/@fakurian' },
+  { file: 'quantum-mechanics.jpg', url: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80', title: 'Introduction to Quantum Mechanics', photographer: 'NASA', photographer_url: 'https://unsplash.com/@nasa' },
+
+  // Management & Business
+  { file: 'lean-startup.jpg', url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&auto=format&fit=crop&q=80', title: 'The Lean Startup', photographer: 'Sean Pollock', photographer_url: 'https://unsplash.com/@seanpollock' },
+  { file: 'zero-to-one.jpg', url: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop&q=80', title: 'Zero to One', photographer: 'Hunters Race', photographer_url: 'https://unsplash.com/@huntersrace' },
+  { file: 'good-to-great.jpg', url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80', title: 'Good to Great', photographer: 'Carlos Muza', photographer_url: 'https://unsplash.com/@kmuza' },
+  { file: 'marketing-management.jpg', url: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&auto=format&fit=crop&q=80', title: 'Marketing Management', photographer: 'Austin Distel', photographer_url: 'https://unsplash.com/@austindistel' },
+
+  // Self Improvement & Career
   { file: 'atomic-habits.jpg', url: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&auto=format&fit=crop&q=80', title: 'Atomic Habits', photographer: 'Andrew Neel', photographer_url: 'https://unsplash.com/@andrewtneel' },
   { file: 'deep-work.jpg', url: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=80', title: 'Deep Work', photographer: 'Judit Peter', photographer_url: 'https://unsplash.com/@juditpeter' },
-  { file: 'thinking-fast-slow.jpg', url: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=600&auto=format&fit=crop&q=80', title: 'Thinking, Fast and Slow', photographer: 'Patrick Tomasso', photographer_url: 'https://unsplash.com/@impatrickt' },
-  { file: 'lean-startup.jpg', url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&auto=format&fit=crop&q=80', title: 'The Lean Startup', photographer: 'Sean Pollock', photographer_url: 'https://unsplash.com/@seanpollock' },
-  { file: 'digital-design.jpg', url: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=80', title: 'Digital Design & Computer Architecture', photographer: 'Alexandre Debiève', photographer_url: 'https://unsplash.com/@alexandre_debieve' },
-  { file: 'signals-systems.jpg', url: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=600&auto=format&fit=crop&q=80', title: 'Signals and Systems', photographer: 'Roman Mager', photographer_url: 'https://unsplash.com/@roman_lazygeek' },
-  { file: 'thermodynamics.jpg', url: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=80', title: 'Thermodynamics: An Engineering Approach', photographer: 'Science in HD', photographer_url: 'https://unsplash.com/@scienceinhd' },
-  { file: 'fluid-mechanics.jpg', url: 'https://images.unsplash.com/photo-1507668077129-56e32842fceb?w=600&auto=format&fit=crop&q=80', title: 'Fluid Mechanics', photographer: 'Lucas Gallone', photographer_url: 'https://unsplash.com/@lucasgallone' },
-  { file: 'cosmos-sagan.jpg', url: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80', title: 'Cosmos by Carl Sagan', photographer: 'NASA', photographer_url: 'https://unsplash.com/@nasa' },
-  { file: 'brief-history-time.jpg', url: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=600&auto=format&fit=crop&q=80', title: 'A Brief History of Time', photographer: 'NASA', photographer_url: 'https://unsplash.com/@nasa' }
+  { file: 'psychology-of-money.jpg', url: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&auto=format&fit=crop&q=80', title: 'The Psychology of Money', photographer: 'Alexander Mils', photographer_url: 'https://unsplash.com/@alexandermils' },
+  { file: 'wings-of-fire.jpg', url: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80', title: 'Wings of Fire', photographer: 'NASA', photographer_url: 'https://unsplash.com/@nasa' },
+  { file: 'sapiens.jpg', url: 'https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=600&auto=format&fit=crop&q=80', title: 'Sapiens: A Brief History of Humankind', photographer: 'Giammarco Boscaro', photographer_url: 'https://unsplash.com/@gbfoc' },
+
+  // Literature & Humanities
+  { file: 'godan.jpg', url: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&auto=format&fit=crop&q=80', title: 'Godan (Hindi Classic)', photographer: 'Aaron Burden', photographer_url: 'https://unsplash.com/@aaronburden' },
+  { file: 'gujarat-no-nath.jpg', url: 'https://images.unsplash.com/photo-1476275466078-4007374efbbe?w=600&auto=format&fit=crop&q=80', title: 'Gujarat No Nath', photographer: 'Susan Q Yin', photographer_url: 'https://unsplash.com/@susan_yin' },
+  { file: 'saraswatichandra.jpg', url: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&auto=format&fit=crop&q=80', title: 'Saraswatichandra', photographer: 'Priscilla Du Preez', photographer_url: 'https://unsplash.com/@priscilladupreez' },
+  { file: 'madhushala.jpg', url: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600&auto=format&fit=crop&q=80', title: 'Madhushala', photographer: 'Jaredd Craig', photographer_url: 'https://unsplash.com/@jaredd_craig' }
 ];
 
 // 2. Curated Member Portrait Avatars

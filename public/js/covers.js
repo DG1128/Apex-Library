@@ -132,46 +132,148 @@ function generateBookCoverSVG(title, author, category = '', width = 300, height 
 
 // Map of known book titles to real downloaded high-res photos
 const BOOK_IMAGE_MAP = {
+  // Computer Science & Programming
   'clean code': '/images/books/clean-code.jpg',
   'pragmatic programmer': '/images/books/pragmatic-programmer.jpg',
   'algorithms': '/images/books/algorithms-clrs.jpg',
-  'design patterns': '/images/books/design-patterns.jpg',
-  'clean architecture': '/images/books/clean-architecture.jpg',
   'data-intensive': '/images/books/ddia.jpg',
+  'c programming': '/images/books/c-programming.jpg',
+  'operating system': '/images/books/operating-systems.jpg',
+  'database': '/images/books/database-systems.jpg',
+  'networks': '/images/books/computer-networks.jpg',
+  'domain-driven': '/images/books/domain-driven-design.jpg',
+  'sicp': '/images/books/sicp.jpg',
+  'structure and interpretation': '/images/books/sicp.jpg',
+  'cracking the coding': '/images/books/cracking-coding-interview.jpg',
+  'microservices': '/images/books/building-microservices.jpg',
   'python': '/images/books/python-crash-course.jpg',
-  'javascript': '/images/books/eloquent-javascript.jpg',
+  'clean architecture': '/images/books/clean-architecture.jpg',
+
+  // AI & Data Science
+  'artificial intelligence': '/images/books/ai-modern-approach.jpg',
   'deep learning': '/images/books/deep-learning-goodfellow.jpg',
   'machine learning': '/images/books/hands-on-ml.jpg',
+  'pattern recognition': '/images/books/pattern-recognition.jpg',
+  'data analysis': '/images/books/python-data-analysis.jpg',
+  'machine learning systems': '/images/books/designing-ml-systems.jpg',
+
+  // Electronics & Hardware
+  'digital design': '/images/books/digital-design.jpg',
+  'microelectronic': '/images/books/microelectronic-circuits.jpg',
+  'signals': '/images/books/signals-systems.jpg',
+  'electronic devices': '/images/books/electronic-devices.jpg',
+  'fpga': '/images/books/fpga-prototyping.jpg',
+
+  // Mechanical & Civil
+  'thermodynamics': '/images/books/thermodynamics.jpg',
+  'theory of machines': '/images/books/theory-of-machines.jpg',
+  'fluid mechanics': '/images/books/fluid-mechanics.jpg',
+  'strength of materials': '/images/books/strength-of-materials.jpg',
+  'steel structures': '/images/books/steel-structures.jpg',
+
+  // Mathematics & Physics
+  'advanced engineering mathematics': '/images/books/advanced-eng-math.jpg',
+  'higher engineering mathematics': '/images/books/higher-eng-math.jpg',
+  'linear algebra': '/images/books/linear-algebra.jpg',
+  'discrete mathematics': '/images/books/discrete-math.jpg',
+  'quantum mechanics': '/images/books/quantum-mechanics.jpg',
+  'cosmos': '/images/books/cosmos-sagan.jpg',
+  'brief history of time': '/images/books/brief-history-time.jpg',
+
+  // Management & Business
+  'lean startup': '/images/books/lean-startup.jpg',
+  'zero to one': '/images/books/zero-to-one.jpg',
+  'good to great': '/images/books/good-to-great.jpg',
+  'marketing management': '/images/books/marketing-management.jpg',
+
+  // Self Improvement & General
   'atomic habits': '/images/books/atomic-habits.jpg',
   'deep work': '/images/books/deep-work.jpg',
-  'thinking, fast and slow': '/images/books/thinking-fast-slow.jpg',
-  'lean startup': '/images/books/lean-startup.jpg',
-  'digital design': '/images/books/digital-design.jpg',
-  'signals and systems': '/images/books/signals-systems.jpg',
-  'thermodynamics': '/images/books/thermodynamics.jpg',
-  'fluid mechanics': '/images/books/fluid-mechanics.jpg',
-  'cosmos': '/images/books/cosmos-sagan.jpg',
-  'brief history of time': '/images/books/brief-history-time.jpg'
+  'psychology of money': '/images/books/psychology-of-money.jpg',
+  'wings of fire': '/images/books/wings-of-fire.jpg',
+  'sapiens': '/images/books/sapiens.jpg',
+  'thinking, fast': '/images/books/thinking-fast-slow.jpg',
+
+  // Literature
+  'godan': '/images/books/godan.jpg',
+  'gujarat no nath': '/images/books/gujarat-no-nath.jpg',
+  'saraswatichandra': '/images/books/saraswatichandra.jpg',
+  'madhushala': '/images/books/madhushala.jpg'
 };
 
-// Render either real photography cover or procedural SVG
+const CATEGORY_IMAGE_MAP = {
+  'computer science': '/images/books/clean-code.jpg',
+  'artificial intelligence': '/images/books/deep-learning-goodfellow.jpg',
+  'data': '/images/books/hands-on-ml.jpg',
+  'electronics': '/images/books/digital-design.jpg',
+  'mechanical': '/images/books/thermodynamics.jpg',
+  'civil': '/images/books/steel-structures.jpg',
+  'mathematics': '/images/books/higher-eng-math.jpg',
+  'physics': '/images/books/quantum-mechanics.jpg',
+  'management': '/images/books/lean-startup.jpg',
+  'business': '/images/books/good-to-great.jpg',
+  'self improvement': '/images/books/atomic-habits.jpg',
+  'career': '/images/books/deep-work.jpg',
+  'literature': '/images/books/sapiens.jpg'
+};
+
+// Render photography cover or procedural SVG
 function getBookCoverHTML(title, author, category = '', width = 300, height = 400) {
-  const lower = (title || '').toLowerCase();
+  const lowerTitle = (title || '').toLowerCase();
+  const lowerCat = (category || '').toLowerCase();
+  
+  let chosenImg = null;
+
+  // 1. Direct title keyword match
   for (const [key, imgPath] of Object.entries(BOOK_IMAGE_MAP)) {
-    if (lower.includes(key)) {
-      return `
-        <div class="book-cover-photo-wrap" style="position:relative; width:100%; height:100%; border-radius:12px; overflow:hidden; background:#1e293b;">
-          <img src="${imgPath}" alt="${title} cover" style="width:100%; height:100%; object-fit:cover; display:block;" loading="lazy" />
-          <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.75) 100%); pointer-events:none;"></div>
-          <div style="position:absolute; bottom:12px; left:12px; right:12px; color:#ffffff; text-shadow:0 2px 6px rgba(0,0,0,0.9); pointer-events:none;">
-            <div style="font-size:0.85rem; font-weight:800; line-height:1.2;">${title}</div>
-            <div style="font-size:0.75rem; opacity:0.85; margin-top:2px;">${author}</div>
-          </div>
-        </div>
-      `;
+    if (lowerTitle.includes(key)) {
+      chosenImg = imgPath;
+      break;
     }
   }
-  return generateBookCoverSVG(title, author, category, width, height);
+
+  // 2. Category photo match
+  if (!chosenImg) {
+    for (const [catKey, imgPath] of Object.entries(CATEGORY_IMAGE_MAP)) {
+      if (lowerCat.includes(catKey) || lowerTitle.includes(catKey)) {
+        chosenImg = imgPath;
+        break;
+      }
+    }
+  }
+
+  // 3. Ultimate default photo fallback
+  if (!chosenImg) {
+    chosenImg = '/images/books/algorithms-clrs.jpg';
+  }
+
+  const shortCategory = category ? (category.length > 20 ? category.substring(0, 18) + '...' : category).toUpperCase() : 'LIBRARY';
+
+  return `
+    <div class="book-cover-photo-wrap" style="position:relative; width:100%; height:100%; border-radius:12px; overflow:hidden; background:#0f172a; box-shadow:0 8px 20px rgba(0,0,0,0.4);">
+      <img src="${chosenImg}" alt="${title} cover" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s ease;" loading="lazy" />
+      
+      <!-- Top Dark Vignette -->
+      <div style="position:absolute; top:0; left:0; right:0; height:60px; background:linear-gradient(180deg, rgba(0,0,0,0.7) 0%, transparent 100%); pointer-events:none;"></div>
+      
+      <!-- Bottom Dark Gradient for Title Legibility -->
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.5) 55%, rgba(15,23,42,0.92) 100%); pointer-events:none;"></div>
+      
+      <!-- Spine Shadow Left -->
+      <div style="position:absolute; top:0; left:0; bottom:0; width:12px; background:linear-gradient(90deg, rgba(0,0,0,0.5) 0%, transparent 100%); pointer-events:none;"></div>
+
+      <!-- Top Category Badge Pill -->
+      <div style="position:absolute; top:12px; left:12px; background:rgba(15,23,42,0.75); backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,0.15); padding:3px 8px; border-radius:10px; font-size:0.65rem; font-weight:700; color:#e2e8f0; letter-spacing:0.5px; pointer-events:none;">
+        ${shortCategory}
+      </div>
+
+      <!-- Bottom Title & Author Text -->
+      <div style="position:absolute; bottom:12px; left:14px; right:14px; color:#ffffff; pointer-events:none;">
+        <div style="font-size:0.9rem; font-weight:800; line-height:1.25; text-shadow:0 2px 6px rgba(0,0,0,0.9); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">${title}</div>
+        <div style="font-size:0.75rem; opacity:0.85; margin-top:3px; text-shadow:0 1px 4px rgba(0,0,0,0.8); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">by ${author}</div>
+      </div>
+    </div>
+  `;
 }
 
 // Global Exports
