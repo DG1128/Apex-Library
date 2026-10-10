@@ -232,11 +232,14 @@ async function loadCatalogBooks() {
 
     if (!data.success || !data.books || data.books.length === 0) {
       grid.innerHTML = `
-        <div style="grid-column: 1 / -1; padding: 60px 20px; text-align: center; color: var(--text-muted);">
-          <div style="margin-bottom:12px;">${getIcon('bookOpen')}</div>
-          <h3>No books found matching your criteria</h3>
-          <p style="margin-top:4px;">Try searching with different keywords or clearing filters.</p>
-          <button class="btn btn-secondary btn-sm" style="margin-top:16px;" onclick="clearHeroSearch()">Clear Filters</button>
+        <div class="empty-state-card" style="grid-column: 1 / -1;">
+          <img src="/images/empty-states/empty-reading-1.jpg"
+               alt="No books found illustration"
+               class="empty-state-img"
+               loading="lazy" />
+          <h3 style="color:var(--text-primary); margin-bottom:4px;">No books found matching your search</h3>
+          <p style="margin-bottom:16px;">Try adjusting keywords, checking spelling, or clearing active filters.</p>
+          <button class="btn btn-secondary btn-sm" onclick="clearHeroSearch()">Clear Filters</button>
         </div>
       `;
       renderPagination(0, 1, 20);

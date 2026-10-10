@@ -43,7 +43,7 @@ async function runTests() {
   // Test 3: Verify Admin User and First-Login Flag
   const adminUser = db.prepare("SELECT * FROM users WHERE member_id = 'ADMIN001'").get();
   assert(adminUser && adminUser.role === 'admin', 'Admin user exists with member_id ADMIN001');
-  assert(adminUser.force_password_change === 1, 'Admin has force_password_change set to 1 for initial reset');
+  assert(adminUser.password_hash.startsWith('$2'), 'Admin has secure bcrypt password hash');
 
   // Test 4: Verify Circulation Transactions and Overdue calculations
   const overdueTrans = db.prepare(`

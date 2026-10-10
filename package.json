@@ -15,6 +15,7 @@
     "test": "node test/api.test.js",
     "test:integration": "node test/integration.test.js",
     "test:all": "node test/api.test.js && node test/integration.test.js",
+    "fetch-images": "node scripts/fetch-images.js",
     "lint": "echo \"Linting check passed cleanly.\""
   },
   "keywords": [

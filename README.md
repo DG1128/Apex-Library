@@ -522,9 +522,10 @@ Please review our [Contributing Guidelines](CONTRIBUTING.md) and [Code of Conduc
 
 Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more information.
 
-### Acknowledgements
+### Acknowledgements & Image Credits
 - [SQLite Development Team](https://www.sqlite.org/) for the rock-solid embedded database engine.
 - [Express.js](https://expressjs.com/) for the minimalist Node.js web server.
+- **Stock Photography Credits**: High-resolution photography downloaded for offline UI backgrounds via `npm run fetch-images` from [Unsplash](https://unsplash.com) & [Pexels](https://pexels.com). Special thanks to photographers *Giammarco Boscaro, Susan Q Yin, Mick Haupt, Priscilla Du Preez, Alexis Brown, Vasily Kolotusha, Alfons Morales, Aline Viana Prado, Product School, Alexandre Pellaes, Kimberly Farmer, Aaron Burden, and Eliott Reyna*. Detailed attribution manifest is preserved in [`public/images/images.json`](public/images/images.json).
 - All student librarians and educators whose feedback shaped this software.
 
 ---

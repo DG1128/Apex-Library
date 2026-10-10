@@ -448,13 +448,58 @@ async function submitForcePasswordChange(e) {
   }
 }
 
-function logout(notify = true) {
-  window.appState.token = null;
-  window.appState.user = null;
-  localStorage.removeItem('lms_token');
-  updateShellUI();
-  navigateTo('home');
-  if (notify) showToast('Signed out successfully', 'info');
+// Image Credits Modal (Unsplash & Pexels Attribution)
+async function openImageCreditsModal() {
+  try {
+    let images = [];
+    const res = await fetch('/images/images.json');
+    if (res.ok) {
+      images = await res.json();
+    }
+
+    const html = `
+      <div class="modal-header">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size:1.3rem;">📷</span>
+          <div>
+            <h3 style="margin:0;">Stock Photography Credits</h3>
+            <p style="font-size:0.8rem; color:var(--text-muted); margin:0;">Free photography sourced from Unsplash & Pexels under open licenses</p>
+          </div>
+        </div>
+        <button class="btn btn-ghost btn-icon" onclick="closeModal()">${getIcon('x')}</button>
+      </div>
+      <div class="modal-body" style="padding:16px 20px;">
+        <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:16px;">
+          All UI imagery is downloaded for 100% offline self-containment. Sincere thanks to the generous photographers below:
+        </p>
+        <div class="credits-grid">
+          ${images.length > 0 ? images.map(img => `
+            <div class="credit-card">
+              <img src="${img.path}" alt="${img.alt || img.title}" class="credit-thumb" loading="lazy" />
+              <div class="credit-info">
+                <div class="credit-title" title="${img.title}">${img.title}</div>
+                <div class="credit-author">
+                  Photo by <a href="${img.photographer_url}" target="_blank" rel="noopener noreferrer" style="color:var(--accent-primary); font-weight:600;">${img.photographer}</a> on <strong>${img.api}</strong>
+                </div>
+              </div>
+            </div>
+          `).join('') : `
+            <div style="grid-column:1/-1; padding:20px; text-align:center; color:var(--text-muted);">
+              Run <code>npm run fetch-images</code> to download and generate photography credits.
+            </div>
+          `}
+        </div>
+      </div>
+      <div class="modal-footer" style="display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:0.8rem; color:var(--text-muted);">Apex LMS • Open Source</span>
+        <button class="btn btn-secondary btn-sm" onclick="closeModal()">Close</button>
+      </div>
+    `;
+
+    openModal(html);
+  } catch (err) {
+    showToast('Failed to load image credits', 'danger');
+  }
 }
 
 // Global Exports
@@ -464,6 +509,8 @@ window.openDrawer = openDrawer;
 window.closeDrawer = closeDrawer;
 window.showToast = showToast;
 window.openLoginModal = openLoginModal;
+window.openImageCreditsModal = openImageCreditsModal;
 window.logout = logout;
 window.navigateTo = navigateTo;
 window.toggleTheme = toggleTheme;
+
