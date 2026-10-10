@@ -116,13 +116,19 @@ function generateBookCoverSVG(title, author, category = '', width = 300, height 
       <text x="${width / 2}" y="${height * 0.46}" text-anchor="middle" fill="rgba(255,255,255,0.18)" font-family="system-ui, sans-serif" font-size="${width * 0.3}" font-weight="900" letter-spacing="2">${initials}</text>
 
       <!-- Book Title -->
-      <g transform="translate(24, ${height * 0.58})">
+      <g transform="translate(24, ${height * 0.60})">
         <text x="0" y="0" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="800" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.4))">
           <tspan x="0" dy="0">${line1}</tspan>
           ${line2 ? `<tspan x="0" dy="22">${line2}</tspan>` : ''}
           ${line3 ? `<tspan x="0" dy="22">${line3}</tspan>` : ''}
         </text>
       </g>
+
+      <!-- Author -->
+      <text x="24" y="${height - 24}" fill="rgba(255,255,255,0.85)" font-family="system-ui, sans-serif" font-size="12" font-weight="600">${shortAuthor}</text>
+    </svg>
+  `;
+}
 
 // Map of known book titles to real downloaded high-res photos
 const BOOK_IMAGE_MAP = {

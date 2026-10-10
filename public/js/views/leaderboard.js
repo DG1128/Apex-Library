@@ -101,12 +101,22 @@ async function loadLeaderboardData() {
         readerList.innerHTML = `<div style="text-align:center; padding:30px; color:var(--text-muted);">No student reading activity yet. Start borrowing books to appear on the leaderboard!</div>`;
       } else {
         const medalEmojis = ['🥇', '🥈', '🥉'];
-        readerList.innerHTML = readerData.readers.slice(0, 10).map((r, index) => `
+        const avatarMap = {
+          'Aarav Sharma': '/images/avatars/student-aarav.jpg',
+          'Diya Patel': '/images/avatars/student-diya.jpg',
+          'Rohan Gupta': '/images/avatars/student-rohan.jpg',
+          'Ananya Singh': '/images/avatars/student-ananya.jpg'
+        };
+
+        readerList.innerHTML = readerData.readers.slice(0, 10).map((r, index) => {
+          const avSrc = avatarMap[r.name] || '/images/avatars/student-aarav.jpg';
+          return `
           <div style="background:var(--bg-input); border-radius:var(--radius-md); padding:12px 16px; display:flex; align-items:center; justify-content:space-between; border:${index === 0 ? '2px solid var(--color-warning)' : '1px solid var(--border-subtle)'};">
             <div style="display:flex; align-items:center; gap:12px;">
               <div style="font-size:1.4rem; width:28px; text-align:center;">
                 ${medalEmojis[index] || `#${r.rank}`}
               </div>
+              <img src="${avSrc}" alt="${r.name}" style="width:34px; height:34px; border-radius:50%; object-fit:cover; border:1.5px solid var(--border-strong);" loading="lazy" />
               <div>
                 <div style="font-weight:700; font-size:0.95rem;">${r.name}</div>
                 <div style="font-size:0.75rem; color:var(--text-muted);">${r.department} ${r.semester ? `(${r.semester})` : ''}</div>
@@ -123,7 +133,8 @@ async function loadLeaderboardData() {
               </div>
             </div>
           </div>
-        `).join('');
+        `;
+        }).join('');
       }
     }
   } catch (e) {

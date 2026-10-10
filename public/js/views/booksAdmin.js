@@ -130,8 +130,15 @@ async function loadBooksAdminTable() {
       <tr>
         <td><code>${b.accession_no}</code></td>
         <td>
-          <div style="font-weight:700; color:var(--text-primary);">${b.title}</div>
-          <div style="font-size:0.75rem; color:var(--text-muted);">${b.publisher || 'N/A'} • ${b.edition} Ed. (${b.year})</div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:36px; height:48px; flex-shrink:0; border-radius:4px; overflow:hidden; box-shadow:var(--shadow-sm);">
+              ${getBookCoverHTML(b.title, b.author, b.category, 36, 48)}
+            </div>
+            <div>
+              <div style="font-weight:700; color:var(--text-primary);">${b.title}</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">${b.publisher || 'N/A'} • ${b.edition} Ed. (${b.year})</div>
+            </div>
+          </div>
         </td>
         <td>${b.author}</td>
         <td><span class="badge badge-neutral">${b.category}</span></td>

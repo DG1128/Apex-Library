@@ -227,7 +227,7 @@ const seedAll = db.transaction(() => {
   // Returned transactions (Historical for analytics)
   insertTrans.run(bookIdMap['ACC-7001'], 'ACC-7001-C1', stu1.lastInsertRowid, daysAgo(30), daysAgo(16), daysAgo(18), 0, 'returned', librarian.lastInsertRowid, librarian.lastInsertRowid, 0.0, 0, 'Returned in good condition');
   insertTrans.run(bookIdMap['ACC-7002'], 'ACC-7002-C1', stu1.lastInsertRowid, daysAgo(45), daysAgo(31), daysAgo(32), 0, 'returned', librarian.lastInsertRowid, librarian.lastInsertRowid, 0.0, 0, 'Returned on time');
-  insertTrans.run(bookIdMap['ACC-1005'], 'ACC-1005-C1', stu2.lastInsertRowid, daysAgo(25), daysAgo(11), daysAgo(10), 0, 'returned', librarian.lastInsertRowid, librarian.lastInsertRowid, 2.0, 1, 'Late return - fine paid');
+  const tPaidFine = insertTrans.run(bookIdMap['ACC-1005'], 'ACC-1005-C1', stu2.lastInsertRowid, daysAgo(25), daysAgo(11), daysAgo(10), 0, 'returned', librarian.lastInsertRowid, librarian.lastInsertRowid, 2.0, 1, 'Late return - fine paid');
   insertTrans.run(bookIdMap['ACC-5002'], 'ACC-5002-C1', stu4.lastInsertRowid, daysAgo(40), daysAgo(26), daysAgo(25), 0, 'returned', librarian.lastInsertRowid, librarian.lastInsertRowid, 0.0, 0, 'Returned');
   insertTrans.run(bookIdMap['ACC-2003'], 'ACC-2003-C1', stu5.lastInsertRowid, daysAgo(35), daysAgo(21), daysAgo(20), 0, 'returned', librarian.lastInsertRowid, librarian.lastInsertRowid, 0.0, 0, 'Returned');
   insertTrans.run(bookIdMap['ACC-6001'], 'ACC-6001-C1', stu6.lastInsertRowid, daysAgo(22), daysAgo(8), daysAgo(7), 0, 'returned', librarian.lastInsertRowid, librarian.lastInsertRowid, 0.0, 0, 'Returned');
@@ -245,7 +245,7 @@ const seedAll = db.transaction(() => {
   insertFine.run(t4.lastInsertRowid, stu5.lastInsertRowid, 6.0, 'Late Return (3 days overdue)', 3, 'unpaid', 0.0, null, null, null, null);
 
   // Paid fine historical record
-  insertFine.run(9, stu2.lastInsertRowid, 2.0, 'Late Return (1 day overdue)', 1, 'paid', 2.0, daysAgo(10), librarian.lastInsertRowid, 'cash', 'REC-2024-001');
+  insertFine.run(tPaidFine.lastInsertRowid, stu2.lastInsertRowid, 2.0, 'Late Return (1 day overdue)', 1, 'paid', 2.0, daysAgo(10), librarian.lastInsertRowid, 'cash', 'REC-2024-001');
 
   // 6. Insert Reservations
   const insertRes = db.prepare(`

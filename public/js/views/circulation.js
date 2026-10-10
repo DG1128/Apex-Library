@@ -243,7 +243,7 @@ function renderCopyCard(c, currentLoan = null) {
       <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
         <div style="display:flex; gap:14px;">
           <div style="width:60px; height:80px; flex-shrink:0;">
-            ${generateBookCoverSVG(c.title, c.author, '', 120, 160)}
+            ${getBookCoverHTML(c.title, c.author, '', 120, 160)}
           </div>
           <div>
             <h3 style="font-size:1.15rem; margin-bottom:2px;" title="${c.title}">${c.title}</h3>
